@@ -1,0 +1,12 @@
+---
+- name: git and github test
+  hosts: target_server
+  remote_user: root
+  become: yes
+
+  vars:
+
+  tasks:
+
+  - name: installing git
+    yum: name=git state=latest
