@@ -1,0 +1,16 @@
+---
+# tasks file for apache
+- name: install httpd and firewalld
+  yum: name={{ item }} state=present
+  with_items:
+  - httpd
+  - firewalld
+
+- name: start firewalld
+  service: name=firewalld state=started enabled=yes
+
+- name: insert firewalld rule for httpd
+  firewalld: port={{httpd-port}}/tcp permanent=true state=enabled immediate=yes
+
+- name: start httpd
+  service: name=httpd state=started enabled=yes
